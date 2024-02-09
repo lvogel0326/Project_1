@@ -1,5 +1,6 @@
 package org.example.Service;
 
+import org.example.Exception.SellerException;
 import org.example.Model.Seller;
 
 import java.util.ArrayList;
@@ -23,7 +24,8 @@ public class SellerService {
         //getter method for accessing the sellersList variable, returns the list of sellers
     }
 
-    public void addSeller(Seller s) {
+    public void addSeller(Seller s) throws SellerException {
+
         sellerList.add(s);
         //this method adds a new Seller object to the sellersList.  It takes a Seller
         //object as a parameter and appends it to the end of the list.

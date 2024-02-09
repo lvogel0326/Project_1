@@ -21,8 +21,10 @@ public class ProductService {
     }
 
     public Product addProduct(Product p) throws ProductException {
-        if(p.getProductName() == null || p.getSellerName() == null){
-            throw new ProductException("Product and Seller name fields cannot be null");
+     //if(p.getProductName() == null || p.getSellerName() == null){
+        if(p.getProductName() == null){
+            throw new ProductException("Product name field cannot be null");
+            // Doesn't work - null values don't throw exception.
         }
 
         // here we wanted to use a long random number for the product ID, but Math.random returns a
