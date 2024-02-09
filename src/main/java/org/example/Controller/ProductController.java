@@ -85,6 +85,7 @@ public class ProductController {
             }
 
         });
+
         api.get("Product/{id}", context -> {
             long id = Long.parseLong(context.pathParam("id"));
             Product p = productService.getProductById(id);
