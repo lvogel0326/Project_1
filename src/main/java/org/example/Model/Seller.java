@@ -21,6 +21,10 @@ public class Seller {
         this.name = name;
     }
 
+    public Object getSellerList() {
+
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -40,4 +44,6 @@ public class Seller {
                 "name='" + name + '\'' +
                 '}';
     }
+
+
 }

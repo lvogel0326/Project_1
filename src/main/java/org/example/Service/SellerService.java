@@ -27,9 +27,11 @@ public class SellerService {
     public void addSeller(Seller s) throws SellerException {
 
         sellerList.add(s);
-        //this method adds a new Seller object to the sellersList.  It takes a Seller
-        //object as a parameter and appends it to the end of the list.
+        //this method adds a new Seller object to the sellersList.  It takes a Seller object as a
+        // parameter and appends it to the end of the list.
     }
+
+
 }
 
 //The SellerService class provides functionality to manage a list of sellers.

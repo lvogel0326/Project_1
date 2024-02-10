@@ -77,6 +77,7 @@ public class ProductController {
                 context.status(201);  // resource created
                 context.json(newProduct);
             }catch (JsonProcessingException e) {
+                context.result(e.getMessage());
                 context.status(400);  // bad request
             }catch(ProductException e) {  // this piece of the catch did not work
                 context.result(e.getMessage());
