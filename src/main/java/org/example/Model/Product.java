@@ -60,7 +60,9 @@ public class Product {
         if (this == o) return true;
         if (!(o instanceof Product)) return false;
         Product product = (Product) o;
-        return getProductID() == product.getProductID() && Double.compare(getProductPrice(), product.getProductPrice()) == 0 && Objects.equals(getProductName(), product.getProductName()) && Objects.equals(getSellerName(), product.getSellerName());
+        return getProductID() == product.getProductID() && Double.compare(getProductPrice(),
+                product.getProductPrice()) == 0 && Objects.equals(getProductName(), product.getProductName())
+                && Objects.equals(getSellerName(), product.getSellerName());
     }
 
     @Override

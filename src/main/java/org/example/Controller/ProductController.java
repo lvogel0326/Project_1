@@ -120,10 +120,50 @@ public class ProductController {
                 productService.deleteProduct(id);
                 context.json(p);
                 context.status(200);
+                context.result("The product ID entered was deleted.");
             }
         });
+
+        api.put("Product/{id}", context -> {
+
+            long id = Long.parseLong(context.pathParam("id"));
+            try {
+                ObjectMapper om = new ObjectMapper();
+                Product productToUpdate = om.readValue(context.body(), Product.class);
+                //long id = Long.parseLong(context.pathParam("productId"));
+                Product updateProduct = productService.updateProduct(id, productToUpdate);
+                if (productToUpdate == null) {
+                    context.status(404);
+                    context.result("Product not found");
+                } else {
+                    context.json(productToUpdate);
+                    context.status(200);
+                    context.result("The product ID entered was updated.");
+                }
+
+            } catch (Exception e) {
+                context.status(500);
+                context.result("Error updating product");
+            }
+
+
+        });
+
 
         return api;
 
     }
 }
+
+/*
+Product p = productService.getProductById(id);
+            if (p == null) {
+                context.status(404); //if the product id was NOT found, return 404
+                context.result("The product ID entered was not found.");
+            } else {
+                productService.updateProduct(id, p);
+                context.json(p);
+                context.status(200);
+                context.result("The product ID entered was updated.");
+            }
+ */

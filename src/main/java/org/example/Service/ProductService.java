@@ -58,7 +58,6 @@ public class ProductService {
             }
         }
         return false;
-
     }
 
 
@@ -84,8 +83,6 @@ public class ProductService {
                 || p.getProductPrice() == 0.0 ){
             throw new ProductException("Product name and Seller name cannot be empty. Price may not be zero");
         }
-
-
         return p;
 
     }
@@ -121,16 +118,27 @@ LK's code for deleteProduct
         }return productToDelete;
     }
 /*
-LK's code for updateProduct
+Tweaked LK's code for updateProduct
+It calls the method (updateProduct) that takes a long id and a Product object as parameters
+then it calls another method (getProductByID) passing it the id parameter just taken in.  The product returned
+from getProductByID is stored in productToUpdate.  Then we check that product name and seller name are not null/empty
+ and that price is > 0.  Then, if productToUpdate is not null we update the product name and/or product price passed in.
  */
-    public Product updateProduct(long id, Product updatedProduct) {
+    public Product updateProduct(long id, Product updatedProduct) throws ProductException {
         Product productToUpdate = getProductById(id);
 
-        if (productToUpdate != null){
+        if(updatedProduct.getProductName().isEmpty() || updatedProduct.getProductName() == null
+            || updatedProduct.getSellerName() == null || updatedProduct.getSellerName().isEmpty()
+            || updatedProduct.getProductPrice() == 0.0 ){
+            throw new ProductException("Product name and Seller name cannot be empty. Price may not be zero");
+        }
+        if (productToUpdate != null) {
+
             productToUpdate.setProductName(updatedProduct.getProductName());
             productToUpdate.setProductPrice(updatedProduct.getProductPrice());
+        }
+        return productToUpdate;
 
-        }return productToUpdate;
     }
 
 
