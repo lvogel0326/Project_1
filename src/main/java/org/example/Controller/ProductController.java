@@ -29,6 +29,12 @@ public class ProductController {
     SellerService sellerService;
 
 
+    //defining a constructor for a class called ProductController, which takes 2 parameters:
+    //productService (a ProductService object) and sellerService (a SellerService object)
+    //Inside the constructor, these passed in objects are assigned to fields in the ProductController
+    // instance.  The constructor accepts a ProductService and SellerService
+    //It assigns these to fields in the class
+    //This allows the controller to use the passed in service objects
     public ProductController(ProductService productService, SellerService sellerService) {
         this.productService = productService;
         this.sellerService = sellerService;

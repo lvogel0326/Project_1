@@ -7,7 +7,7 @@ public class Seller {
 
     public Seller() {  // this is the no args constructor
 
-        }
+    }
 
     public Seller(String name) {
         this.name = name;

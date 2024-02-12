@@ -39,6 +39,11 @@ public class ProductService {
         return false;
     }
 
+    //This method (addProduct) takes a Product object p as a parameter and returns a Product object.
+    // It also declares that it may throw a ProductException.
+    // This method performs validation checks on the product p before adding it to the system.
+    // If any of the validation checks fail, it throws a ProductException with an error message.
+    // Otherwise, it proceeds with adding the product.
     public Product addProduct(Product p) throws ProductException {
 
         if (!sellerNameExists(p.sellerName)){

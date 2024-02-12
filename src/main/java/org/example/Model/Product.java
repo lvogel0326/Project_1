@@ -14,6 +14,8 @@ public class Product {
 
     }
 
+    //This is the constructor for the Product class.
+    // It has four parameters and assigns each one to a field.
     public Product(long productID, String productName, String sellerName, double productPrice) {
         this.productID = productID;
         this.productName = productName;
