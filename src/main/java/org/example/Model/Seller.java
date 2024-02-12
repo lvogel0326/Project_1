@@ -7,7 +7,7 @@ public class Seller {
 
     public Seller() {  // this is the no args constructor
 
-    }
+        }
 
     public Seller(String name) {
         this.name = name;
@@ -21,9 +21,10 @@ public class Seller {
         this.name = name;
     }
 
-    public Object getSellerList() {
+//NOTE: below code came from Alla
+/*    public Object getSellerList() {
 
-    }
+    }*/
 
     @Override
     public boolean equals(Object o) {

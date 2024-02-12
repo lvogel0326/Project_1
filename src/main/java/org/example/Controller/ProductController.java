@@ -54,15 +54,19 @@ public class ProductController {
         Javalin api = Javalin.create();
 
         //.get is a method - "health" is an endpoint that checks to see if the server is "up" or not
-        api.get( "health", context -> {context.result("The server is UP"); } );
+        api.get( "health", context -> {context.result("The server is UP");
+        } );
 
         // we'll want a get and a post for both product and seller - plus exception handling
         api.get( "Seller", context -> {
             List<Seller> sellerList = sellerService.getSellerList();
-            context.json(sellerList); } );
+            context.json(sellerList);
+        } );
+
         api.get("Product", context -> {
             List<Product> productList = productService.getProductList();
-            context.json(productList) ; } );
+            context.json(productList) ;
+        } );
 
         api.post("Seller", context -> {
             try {
@@ -71,9 +75,10 @@ public class ProductController {
                 sellerService.addSeller(s);
                 context.status(201);  // resource created
             }catch (JsonProcessingException e) {
+                e.printStackTrace();
                 context.status(400);  // bad request
             }
-        });
+        } );
 
         api.post("Product", context -> {
             try {
@@ -90,7 +95,6 @@ public class ProductController {
                 context.status(400);
                 // need to add a catch for the seller doesn't match an existing seller piece.
             }
-
         });
 
         api.get("Product/{id}", context -> {
@@ -103,8 +107,20 @@ public class ProductController {
                 context.json(p);
                 context.status(200); // if product id WAS found, return 200
             }
+        });
 
-
+//NOTE:  type delete code here
+        api.delete("Product/{id}", context -> {
+            long id = Long.parseLong(context.pathParam("id"));
+            Product p = productService.getProductById(id);
+            if(p == null) {
+                context.status(404); //if the product id was NOT found, return 404
+                context.result("The product ID entered was not found.");
+            }else {
+                productService.deleteProduct(id);
+                context.json(p);
+                context.status(200);
+            }
         });
 
         return api;

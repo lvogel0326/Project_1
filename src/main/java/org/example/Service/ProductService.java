@@ -10,6 +10,7 @@ import java.util.List;
 //below we are defining the ProductService class.
 // Two fields are declared within the class:  SellerService and List<Product>
 public class ProductService {
+    //NOTE:  LK has these below the DI, do i need to move them??
     SellerService sellerService;  //an instance of the SellerService class used to perform CRUD operations on sellers
     List<Product> productList;  // a list of Product objects, used to store/manage products in ProductService
     //The type List<Product> indicates that this field holds a collection of Product objects. The list allows
@@ -28,16 +29,38 @@ public class ProductService {
         return productList;
     }
 
-    //This method (sellerNameExists) takes a String parameter (sellerName) and returns a boolean value
+/*    //This method (sellerNameExists) takes a String parameter (sellerName) and returns a boolean value
     // indicating whether a seller with the specified name exists.
-    private boolean sellerNameExists(String sellerName){
+    public boolean sellerNameExists(Product p){
         List<Seller> sellerList = sellerService.getSellerList();
         for(int i = 0; i < sellerList.size(); i++){
             Seller currentSeller = sellerList.get(i);
             return currentSeller.getSellerList().equals(sellerName);
         }
         return false;
+    }*/
+
+    public boolean sellerNameExists(Product p)
+            throws ProductException {
+        if (p.getProductName() == null || p.getSellerName() == null || p.getProductPrice() == 0) {
+            throw new ProductException("Product Name and Seller Name cannot be blank an Product Price must be > 0");
+        }
+        // sellerService = new SellerService();
+        List<Seller> sellerList = sellerService.getSellerList();
+        System.out.println("seller list" + sellerList.size());
+        for (int i = 0; i < sellerList.size(); i++) {
+            if (p.sellerName.equals(sellerList.get(i).getName())) {
+                /*long id = (long) (Math.random() * Long.MAX_VALUE);
+                p.setProductId(id);
+                productList.add(p);
+             */
+                return true;
+            }
+        }
+        return false;
+
     }
+
 
     //This method (addProduct) takes a Product object p as a parameter and returns a Product object.
     // It also declares that it may throw a ProductException.
@@ -45,8 +68,15 @@ public class ProductService {
     // If any of the validation checks fail, it throws a ProductException with an error message.
     // Otherwise, it proceeds with adding the product.
     public Product addProduct(Product p) throws ProductException {
-
-        if (!sellerNameExists(p.sellerName)){
+        boolean sellerExists = sellerNameExists(p);
+        if (sellerExists){
+            // here we wanted to use a long random number for the product ID, but Math.random returns a
+            // double so we had to "cast" this to a "long".
+            long id = (long) (Math.random() * Long.MAX_VALUE);
+            p.setProductID(id);
+            // adding the product to the productList.
+            productList.add(p);
+        }else{
             throw new ProductException("Seller name does not exist in list");
         }
         if(p.getProductName() == null || p.getProductName().isEmpty()
@@ -55,12 +85,7 @@ public class ProductService {
             throw new ProductException("Product name and Seller name cannot be empty. Price may not be zero");
         }
 
-        // here we wanted to use a long random number for the product ID, but Math.random returns a
-        // double so we had to "cast" this to a "long".
-        long id = (long) (Math.random() * Long.MAX_VALUE);
-        p.setProductID(id);
-        // adding the product to the productList.
-        productList.add(p);
+
         return p;
 
     }
@@ -83,5 +108,31 @@ public class ProductService {
         }
         return null;
     }
+
+/*
+LK's code for deleteProduct
+ */
+    public Product deleteProduct(long productId) {
+        Product productToDelete = getProductById(productId);
+
+        if (productToDelete != null) {
+            productList.remove(productToDelete);
+
+        }return productToDelete;
+    }
+/*
+LK's code for updateProduct
+ */
+    public Product updateProduct(long id, Product updatedProduct) {
+        Product productToUpdate = getProductById(id);
+
+        if (productToUpdate != null){
+            productToUpdate.setProductName(updatedProduct.getProductName());
+            productToUpdate.setProductPrice(updatedProduct.getProductPrice());
+
+        }return productToUpdate;
+    }
+
+
 
 }

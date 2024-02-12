@@ -25,6 +25,15 @@ public class SellerService {
     }
 
     public void addSeller(Seller s) throws SellerException {
+        // LK code up to "sellerList.add(s)
+        for (int i = 0; i < sellerList.size(); i++) {
+            // seller = sellerList.get(i);
+            if (s.name.equals(sellerList.get(i).getName())) {
+                //System.out.println(""+ seller + sellerList.get(i));
+                throw new SellerException("Seller name already exists");
+            }
+
+        }
 
         sellerList.add(s);
         //this method adds a new Seller object to the sellersList.  It takes a Seller object as a
