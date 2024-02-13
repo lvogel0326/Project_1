@@ -22,13 +22,14 @@ CRUD functionality on Product
 //        - Product names should be non-null - 
 //        - Price should be over 0 - 
 //        - Seller name should refer to an actually existing seller
-- PUT /product/{id} - Update a single product 
-        - Product names should be non-null  
-        - Price should be over 0 
-        - Seller name should refer to an actually existing seller
+//- PUT /product/{id} - Update a single product 
+//        - Product names should be non-null  
+//        - Price should be over 0 
+//        - Seller name should refer to an actually existing seller
 //  - DELETE /product/{id} - Delete a single product 
 //         - DELETE should always return 200, regardless of if the item existed at the start or not. 
             This is convention.
 
 Unit testing of service classes 
-Logging within service classes
+
+Logging within service classes - added logging but nothing actually logged?  

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.javalin.Javalin;
 import org.example.Exception.ProductException;
+import org.example.Exception.SellerException;
 import org.example.Model.Product;
 import org.example.Model.Seller;
 import org.example.Service.ProductService;
@@ -70,18 +71,32 @@ public class ProductController {
 
         api.post("Seller", context -> {
             try {
+
                 ObjectMapper om = new ObjectMapper();
                 Seller s = om.readValue(context.body(), Seller.class);
+
+                /*List<Seller> existingSellers = sellerService.getSellerList();
+
+                for(Seller existingSeller : existingSellers) {
+                    if (existingSeller.equals(s)) {
+                        context.status(409); //if the product id was NOT found, return 404
+                        context.result("Seller already exists on Seller database.");
+                    }
+                }*/
+
+
                 sellerService.addSeller(s);
                 context.status(201);  // resource created
 
 
 
-            }catch (JsonProcessingException e) {
+            }catch (JsonProcessingException | SellerException e) {
                 e.printStackTrace();
+                context.result(e.getMessage());
                 context.status(400);  // bad request
             }
-        } );
+
+        });
 
         api.post("Product", context -> {
             try {
@@ -159,14 +174,9 @@ public class ProductController {
 }
 
 /*
-Product p = productService.getProductById(id);
-            if (p == null) {
-                context.status(404); //if the product id was NOT found, return 404
-                context.result("The product ID entered was not found.");
-            } else {
-                productService.updateProduct(id, p);
-                context.json(p);
-                context.status(200);
-                context.result("The product ID entered was updated.");
-            }
- */
+for (int i = 0; i < sellerList.size(); i++) {
+        // seller = sellerList.get(i);
+        if (s.name.equals(sellerList.get(i).getName())) {
+        //System.out.println(""+ seller + sellerList.get(i));
+        throw new SellerException("Seller name already exists");
+        */

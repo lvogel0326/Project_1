@@ -21,11 +21,6 @@ public class Seller {
         this.name = name;
     }
 
-//NOTE: below code came from Alla
-/*    public Object getSellerList() {
-
-    }*/
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
