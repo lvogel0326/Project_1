@@ -1,6 +1,7 @@
 package org.example.Service;
 
 import org.example.Exception.SellerException;
+import org.example.Main;
 import org.example.Model.Seller;
 
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class SellerService {
     }
 
     public void addSeller(Seller s) throws SellerException {
+        Main.log.info("Attempting to add a Seller:" + s);
         // LK code up to "sellerList.add(s)
         for (int i = 0; i < sellerList.size(); i++) {
             // seller = sellerList.get(i);

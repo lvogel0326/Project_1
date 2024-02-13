@@ -1,6 +1,7 @@
 package org.example.Service;
 
 import org.example.Exception.ProductException;
+import org.example.Main;
 import org.example.Model.Product;
 import org.example.Model.Seller;
 
@@ -67,6 +68,7 @@ public class ProductService {
     // If any of the validation checks fail, it throws a ProductException with an error message.
     // Otherwise, it proceeds with adding the product.
     public Product addProduct(Product p) throws ProductException {
+        Main.log.info("Attempting to add a Product");
         boolean sellerExists = sellerNameExists(p);
         if (sellerExists){
             // here we wanted to use a long random number for the product ID, but Math.random returns a
@@ -76,11 +78,12 @@ public class ProductService {
             // adding the product to the productList.
             productList.add(p);
         }else{
-            throw new ProductException("Seller name does not exist in list");
+            Main.log.info("Seller name does not exist");
+            throw new ProductException("Seller name does not exist in Seller database");
         }
         if(p.getProductName() == null || p.getProductName().isEmpty()
                 || p.getSellerName() == null || p.getSellerName().isEmpty()
-                || p.getProductPrice() == 0.0 ){
+                || p.getProductPrice() == 0.00 ){
             throw new ProductException("Product name and Seller name cannot be empty. Price may not be zero");
         }
         return p;
@@ -129,7 +132,7 @@ from getProductByID is stored in productToUpdate.  Then we check that product na
 
         if(updatedProduct.getProductName().isEmpty() || updatedProduct.getProductName() == null
             || updatedProduct.getSellerName() == null || updatedProduct.getSellerName().isEmpty()
-            || updatedProduct.getProductPrice() == 0.0 ){
+            || updatedProduct.getProductPrice() == 0.00 ){
             throw new ProductException("Product name and Seller name cannot be empty. Price may not be zero");
         }
         if (productToUpdate != null) {

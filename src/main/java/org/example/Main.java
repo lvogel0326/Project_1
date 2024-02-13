@@ -4,6 +4,8 @@ import io.javalin.Javalin;
 import org.example.Controller.ProductController;
 import org.example.Service.ProductService;
 import org.example.Service.SellerService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /*
 We run the main method, which instantiates the ProductController, which in turn instantiates the
@@ -24,6 +26,8 @@ Here in Main we are instantiated the ProductController we created.  Because Prod
 ProductService instantiated there, main can pick up everything we've created.
  */
 public class Main {
+
+    public static Logger log = LoggerFactory.getLogger(Main.class);
     public static void main(String[] args) {
         //creating the ProductController
         SellerService sellerService = new SellerService();

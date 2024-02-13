@@ -74,6 +74,9 @@ public class ProductController {
                 Seller s = om.readValue(context.body(), Seller.class);
                 sellerService.addSeller(s);
                 context.status(201);  // resource created
+
+
+
             }catch (JsonProcessingException e) {
                 e.printStackTrace();
                 context.status(400);  // bad request
