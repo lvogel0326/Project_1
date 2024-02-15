@@ -75,24 +75,12 @@ public class ProductController {
                 ObjectMapper om = new ObjectMapper();
                 Seller s = om.readValue(context.body(), Seller.class);
 
-                /*List<Seller> existingSellers = sellerService.getSellerList();
-
-                for(Seller existingSeller : existingSellers) {
-                    if (existingSeller.equals(s)) {
-                        context.status(409); //if the product id was NOT found, return 404
-                        context.result("Seller already exists on Seller database.");
-                    }
-                }*/
-
-
                 sellerService.addSeller(s);
                 context.status(201);  // resource created
 
-
-
             }catch (JsonProcessingException | SellerException e) {
                 e.printStackTrace();
-                context.result(e.getMessage());
+                context.result(e.getMessage()); //this will display the message from SellerException
                 context.status(400);  // bad request
             }
 
@@ -174,9 +162,14 @@ public class ProductController {
 }
 
 /*
-for (int i = 0; i < sellerList.size(); i++) {
-        // seller = sellerList.get(i);
-        if (s.name.equals(sellerList.get(i).getName())) {
-        //System.out.println(""+ seller + sellerList.get(i));
-        throw new SellerException("Seller name already exists");
-        */
+The below is the code i had originally for
+ */
+
+                /*List<Seller> existingSellers = sellerService.getSellerList();
+
+                for(Seller existingSeller : existingSellers) {
+                    if (existingSeller.equals(s)) {
+                        context.status(409); //if the product id was NOT found, return 404
+                        context.result("Seller already exists on Seller database.");
+                    }
+                }*/
