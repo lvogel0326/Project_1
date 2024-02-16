@@ -1,5 +1,6 @@
 package org.example.Service;
 
+import org.example.DOA.SellerDAO;
 import org.example.Exception.SellerException;
 import org.example.Main;
 import org.example.Model.Seller;
@@ -8,6 +9,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SellerService {
+
+   /*
+    This is the DOA stuff -
+    */
+
+    SellerDAO sellerDAO;
+    public SellerService(SellerDAO sellerDAO){
+        this.sellerDAO = sellerDAO;
+    }
+
     List<Seller> sellerList;
     // this instance variable represents a list of "Seller" objects.
     // it is declared but not initialized in the class

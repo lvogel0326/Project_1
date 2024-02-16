@@ -1,5 +1,6 @@
 package org.example.Service;
 
+import org.example.DOA.ProductDAO;
 import org.example.Exception.ProductException;
 import org.example.Main;
 import org.example.Model.Product;
@@ -11,6 +12,16 @@ import java.util.List;
 //below we are defining the ProductService class.
 // Two fields are declared within the class:  SellerService and List<Product>
 public class ProductService {
+
+     /*
+    This is the DOA stuff -
+    */
+
+    ProductDAO productDAO;
+    public ProductService(ProductDAO productDAO){
+        this.productDAO = productDAO;
+    }
+
     //NOTE:  LK has these below the DI, do i need to move them??
     SellerService sellerService;  //an instance of the SellerService class used to perform CRUD operations on sellers
     List<Product> productList;  // a list of Product objects, used to store/manage products in ProductService

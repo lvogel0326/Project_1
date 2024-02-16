@@ -52,7 +52,8 @@ public class ProductController {
      */
 
     public Javalin getAPI() {
-        Javalin api = Javalin.create();
+        Javalin api = Javalin.create();  //Ted has:  Javalin app = Javalin.create();
+
 
         //.get is a method - "health" is an endpoint that checks to see if the server is "up" or not
         api.get( "health", context -> {context.result("The server is UP");

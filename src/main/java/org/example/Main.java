@@ -1,11 +1,16 @@
 package org.example;
 
+import Utility.ConnectionSingleton;
 import io.javalin.Javalin;
 import org.example.Controller.ProductController;
+import org.example.DOA.ProductDAO;
+import org.example.DOA.SellerDAO;
 import org.example.Service.ProductService;
 import org.example.Service.SellerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.sql.Connection;
 
 /*
 We run the main method, which instantiates the ProductController, which in turn instantiates the
@@ -29,7 +34,20 @@ public class Main {
 
     public static Logger log = LoggerFactory.getLogger(Main.class);
     public static void main(String[] args) {
-        //creating the ProductController
+        Connection conn = ConnectionSingleton.getConnection();
+        SellerDAO sellerDAO = new SellerDAO(conn);
+        ProductDAO productDAO = new ProductDAO(conn);
+        SellerService sellerService = new SellerService(sellerDAO);
+        ProductService productService = new ProductService(productDAO);
+        ProductController productController = new ProductController(productService, sellerService);
+
+        Javalin api = productController.getAPI();
+
+        api.start(9002);
+
+        // **** TED GOT RID OF EVERYTHING IN HIS 2/13 DEMO
+        // **** COMMENTING THIS OUR FOR NOW
+      /*  //creating the ProductController
         SellerService sellerService = new SellerService();
         ProductService productService = new ProductService(sellerService);
         ProductController productController = new ProductController(productService, sellerService);
@@ -41,7 +59,7 @@ public class Main {
 
         //take in the Javalin object that's created when we configure the API
         Javalin api = productController.getAPI();
-        api.start(9002);
+        api.start(9002);*/
 
     }
 }
