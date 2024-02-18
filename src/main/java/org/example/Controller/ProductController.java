@@ -52,30 +52,30 @@ public class ProductController {
      */
 
     public Javalin getAPI() {
-        Javalin api = Javalin.create();  //Ted has:  Javalin app = Javalin.create();
+        Javalin app = Javalin.create();  //Ted has:  Javalin app = Javalin.create();
 
 
         //.get is a method - "health" is an endpoint that checks to see if the server is "up" or not
-        api.get( "health", context -> {context.result("The server is UP");
+        app.get( "health", context -> {context.result("The server is UP");
         } );
 
         // we'll want a get and a post for both product and seller - plus exception handling
-        api.get( "Seller", context -> {
+        app.get( "Seller", context -> {
             List<Seller> sellerList = sellerService.getSellerList();
             context.json(sellerList);
         } );
 
-        api.get("Product", context -> {
+        app.get("Product", context -> {
             List<Product> productList = productService.getProductList();
             context.json(productList) ;
         } );
 
-        api.post("Seller", context -> {
+        app.post("Seller", context -> {
             try {
-
+                //converts the request body into a seller object
                 ObjectMapper om = new ObjectMapper();
                 Seller s = om.readValue(context.body(), Seller.class);
-
+                //below is using the sellerService to save the seller
                 sellerService.addSeller(s);
                 context.status(201);  // resource created
 
@@ -87,7 +87,7 @@ public class ProductController {
 
         });
 
-        api.post("Product", context -> {
+        app.post("Product", context -> {
             try {
                 ObjectMapper om = new ObjectMapper();
                 Product p = om.readValue(context.body(), Product.class);
@@ -104,7 +104,7 @@ public class ProductController {
             }
         });
 
-        api.get("Product/{id}", context -> {
+        app.get("Product/{id}", context -> {
             long id = Long.parseLong(context.pathParam("id"));
             Product p = productService.getProductById(id);
             if(p == null) {
@@ -117,7 +117,7 @@ public class ProductController {
         });
 
 //NOTE:  type delete code here
-        api.delete("Product/{id}", context -> {
+        app.delete("Product/{id}", context -> {
             long id = Long.parseLong(context.pathParam("id"));
             Product p = productService.getProductById(id);
             if(p == null) {
@@ -131,7 +131,7 @@ public class ProductController {
             }
         });
 
-        api.put("Product/{id}", context -> {
+        app.put("Product/{id}", context -> {
 
             long id = Long.parseLong(context.pathParam("id"));
             try {
@@ -157,7 +157,7 @@ public class ProductController {
         });
 
 
-        return api;
+        return app;
 
     }
 }

@@ -32,8 +32,13 @@ public class SellerService {
     }
 
     public List<Seller> getSellerList() {
+        List<Seller> sellerList = sellerDAO.getSellerList();
         return sellerList;
         //getter method for accessing the sellersList variable, returns the list of sellers
+    }
+
+    public void saveSeller(Seller s) {
+        sellerDAO.addSeller(s);
     }
 
     public void addSeller(Seller s) throws SellerException {

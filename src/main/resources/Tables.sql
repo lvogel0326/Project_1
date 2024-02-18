@@ -18,4 +18,4 @@ INSERT INTO SELLER (name) VALUES
 ('family dollar');
 
 INSERT INTO PRODUCT (productID, productName, sellerName, productPrice) VALUES
-(1, 'doll','family dollar', 12.99);  //how do i account for the randomly generated number?
+(1, 'doll','walmart', 12.99);  --how do i account for the randomly generated number?
