@@ -1,6 +1,7 @@
 package org.example.Service;
 
 import org.example.DOA.ProductDAO;
+import org.example.DOA.SellerDAO;
 import org.example.Exception.ProductException;
 import org.example.Main;
 import org.example.Model.Product;
@@ -16,11 +17,15 @@ public class ProductService {
      /*
     This is the DOA stuff -
     */
-
+     SellerDAO sellerDAO;
     ProductDAO productDAO;
-    public ProductService(ProductDAO productDAO){
+    public ProductService(ProductDAO productDAO, SellerDAO sellerDAO){
         this.productDAO = productDAO;
+        this.sellerDAO = sellerDAO;
     }
+
+
+
 
     //NOTE:  LK has these below the DI, do i need to move them??
     SellerService sellerService;  //an instance of the SellerService class used to perform CRUD operations on sellers
@@ -38,6 +43,7 @@ public class ProductService {
     //productList variable.  It ENCAPSULATES the retrieval logic, allowing other parts of the code
     // to access the product list without directly accessing the underlying variable
     public List<Product> getProductList() {
+        List<Product> productList = productDAO.getProductList();
         return productList;
     }
 
@@ -58,7 +64,8 @@ public class ProductService {
             throw new ProductException("Product Name and Seller Name cannot be blank an Product Price must be > 0");
         }
         // sellerService = new SellerService();
-        List<Seller> sellerList = sellerService.getSellerList();
+        //List<Seller> sellerList = sellerService.getSellerList();
+        List<Seller> sellerList = sellerDAO.getSellerList();
         System.out.println("seller list" + sellerList.size());
         for (int i = 0; i < sellerList.size(); i++) {
             if (p.sellerName.equals(sellerList.get(i).getName())) {
@@ -111,9 +118,9 @@ public class ProductService {
      */
 
     public Product getProductById(Long id) {
-        for(int i = 0; i < productList.size(); i++) {
-            Product currentProduct = productList.get(i);
-            if(currentProduct.getProductID() == id) {
+        for (Product currentProduct : getProductList()) {
+            if (currentProduct.getProductID() == id) {
+                System.out.println();
                 return currentProduct;
             }
         }
@@ -123,11 +130,11 @@ public class ProductService {
 /*
 LK's code for deleteProduct
  */
-    public Product deleteProduct(long productId) {
-        Product productToDelete = getProductById(productId);
+    public Product deleteProduct(long productID) {
+        Product productToDelete = getProductById(productID);
 
         if (productToDelete != null) {
-            productList.remove(productToDelete);
+            getProductList().remove(productToDelete);
 
         }return productToDelete;
     }

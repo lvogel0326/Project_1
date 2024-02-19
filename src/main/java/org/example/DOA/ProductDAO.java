@@ -18,7 +18,7 @@ public class ProductDAO {
         //establishing list of cars at the start of the method
         List<Product> productResult = new ArrayList<>();
         try{
-            PreparedStatement ps = conn.prepareStatement("select * from seller");
+            PreparedStatement ps = conn.prepareStatement("select * from Product");
             ResultSet rs = ps.executeQuery();
             //while there are still values in resultSet, load them in the set of values
             while(rs.next()){
@@ -38,10 +38,8 @@ public class ProductDAO {
     public void addProduct(Product p) {
         try{
             PreparedStatement ps = conn.prepareStatement("insert into PRODUCT" +
-                    " (productName, sellerName, productPrice) " +
-                    "values (?, ?, ?)");
-            /*long productId = p.getProductID();
-            int productIdInt = (int) productId;*/
+                    " (productID, productName, sellerName, productPrice) " +
+                    "values (?, ?, ?, ?)");
             ps.setLong(1, p.getProductID());
             ps.setString(2, p.getProductName());
             ps.setString(3, p.getSellerName());

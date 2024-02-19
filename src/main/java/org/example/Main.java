@@ -38,7 +38,7 @@ public class Main {
         SellerDAO sellerDAO = new SellerDAO(conn);
         ProductDAO productDAO = new ProductDAO(conn);
         SellerService sellerService = new SellerService(sellerDAO);
-        ProductService productService = new ProductService(productDAO);
+        ProductService productService = new ProductService(productDAO, sellerDAO);
         ProductController productController = new ProductController(productService, sellerService);
 
         Javalin api = productController.getAPI();

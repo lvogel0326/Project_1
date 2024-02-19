@@ -17,8 +17,8 @@ INSERT INTO SELLER (name) VALUES
 ('target'),
 ('family dollar');
 
---INSERT INTO PRODUCT (productID, productName, sellerName, productPrice) VALUES
---(123456789, 'doll','walmart', 12.99);  --how do i enter the productID which is randomly generated?
+INSERT INTO PRODUCT (productID, productName, sellerName, productPrice) VALUES
+(123456789,'doll','walmart',12.99);  --how do i enter the productID which is randomly generated?
 
 -- removed productID thinking this would fix my issue - it didn't
 --INSERT INTO PRODUCT (productName, sellerName, productPrice) VALUES
