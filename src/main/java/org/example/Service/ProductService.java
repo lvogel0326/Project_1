@@ -87,7 +87,7 @@ public class ProductService {
             long id = (long) (Math.random() * Long.MAX_VALUE);
             p.setProductID(id);
             // adding the product to the productList.
-            productList.add(p);
+            productDAO.addProduct(p);
         }else{
             Main.log.info("Seller name does not exist");
             throw new ProductException("Seller name does not exist in Seller database");

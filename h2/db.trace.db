@@ -62,3 +62,65 @@ DROP TABLE SELLER IF EXISTS [90107-214]
 	at Utility.ConnectionSingleton.resetTestDatabase(ConnectionSingleton.java:64)
 	at Utility.ConnectionSingleton.getConnection(ConnectionSingleton.java:44)
 	at org.example.Main.main(Main.java:37)
+2024-02-18 16:36:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Cannot drop "SELLER" because "CONSTRAINT_18" depends on it; SQL statement:
+DROP TABLE SELLER IF EXISTS [90107-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:632)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:97)
+	at org.h2.command.ddl.DropTable.update(DropTable.java:121)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:252)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:252)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223)
+	at org.h2.tools.RunScript.execute(RunScript.java:169)
+	at Utility.ConnectionSingleton.resetTestDatabase(ConnectionSingleton.java:64)
+	at Utility.ConnectionSingleton.getConnection(ConnectionSingleton.java:44)
+	at org.example.Main.main(Main.java:37)
+2024-02-18 16:37:50 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Parameter "#1" is not set; SQL statement:
+
+
+INSERT INTO PRODUCT (productID, productName, sellerName, productPrice) VALUES
+(?, 'doll','walmart', 12 [90012-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:646)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.Parameter.checkSet(Parameter.java:75)
+	at org.h2.command.Prepared.checkParameters(Prepared.java:207)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:159)
+	at org.h2.command.Command.executeUpdate(Command.java:252)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:252)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223)
+	at org.h2.tools.RunScript.execute(RunScript.java:169)
+	at Utility.ConnectionSingleton.resetTestDatabase(ConnectionSingleton.java:64)
+	at Utility.ConnectionSingleton.getConnection(ConnectionSingleton.java:44)
+	at org.example.Main.main(Main.java:37)
+2024-02-18 17:09:43 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Parameter "#1" is not set; SQL statement:
+
+
+INSERT INTO PRODUCT (productID, productName, sellerName, productPrice) VALUES
+(?, 'doll','walmart', 12 [90012-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:646)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.Parameter.checkSet(Parameter.java:75)
+	at org.h2.command.Prepared.checkParameters(Prepared.java:207)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:159)
+	at org.h2.command.Command.executeUpdate(Command.java:252)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:252)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223)
+	at org.h2.tools.RunScript.execute(RunScript.java:169)
+	at Utility.ConnectionSingleton.resetTestDatabase(ConnectionSingleton.java:64)
+	at Utility.ConnectionSingleton.getConnection(ConnectionSingleton.java:44)
+	at org.example.Main.main(Main.java:37)
+2024-02-18 17:18:22 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "\000d\000a\000d\000aINSERT INTO PRODUCT (productID, productName, sellerName, productPrice) VALUES\000d\000a123456789, 'doll','walmart', 12.99[*])"; SQL statement:
+
+
+INSERT INTO PRODUCT (productID, productName, sellerName, productPrice) VALUES
+123456789, 'doll','walmart', 12.99) [42000-214]

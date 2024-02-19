@@ -44,16 +44,17 @@ public class SellerService {
     public void addSeller(Seller s) throws SellerException {
         Main.log.info("Attempting to add a Seller:" + s);
         // LK code up to "sellerList.add(s)
-        for (int i = 0; i < sellerList.size(); i++) {
+        List<Seller> existingSeller = getSellerList();
+        for (int i = 0; i < existingSeller.size(); i++) {
             // seller = sellerList.get(i);
-            if (s.name.equals(sellerList.get(i).getName())) {
+            if (s.name.equals(existingSeller.get(i).getName())) {
                 //System.out.println(""+ seller + sellerList.get(i));
                 throw new SellerException("Seller name already exists");
             }
 
         }
 
-        sellerList.add(s);
+        sellerDAO.addSeller(s);
         //this method adds a new Seller object to the sellersList.  It takes a Seller object as a
         // parameter and appends it to the end of the list.
     }
