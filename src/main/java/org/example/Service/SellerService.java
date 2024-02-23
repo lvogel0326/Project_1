@@ -45,9 +45,13 @@ public class SellerService {
         Main.log.info("Attempting to add a Seller:" + s);
         // LK code up to "sellerList.add(s)
         List<Seller> existingSeller = getSellerList();
-        for (int i = 0; i < existingSeller.size(); i++) {
+
+        for (Seller seller : existingSeller) {
             // seller = sellerList.get(i);
-            if (s.name.equals(existingSeller.get(i).getName())) {
+            if (s.name.isEmpty()) {
+                throw new SellerException("Seller name cannot be empty or null");
+            }
+            if (s.name.equals(seller.getName())) {
                 //System.out.println(""+ seller + sellerList.get(i));
                 throw new SellerException("Seller name already exists");
             }

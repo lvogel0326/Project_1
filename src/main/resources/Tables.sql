@@ -6,7 +6,7 @@ CREATE TABLE SELLER (
 );
 
 CREATE TABLE PRODUCT (
-    productID long primary key,  -- tried removing this to account for auto generated productID - didn't work
+    productID long primary key,
     productName varchar(255) not null,
     sellerName varchar(255) references SELLER(name),
     productPrice double
@@ -18,8 +18,6 @@ INSERT INTO SELLER (name) VALUES
 ('family dollar');
 
 INSERT INTO PRODUCT (productID, productName, sellerName, productPrice) VALUES
-(123456789,'doll','walmart',12.99);  --how do i enter the productID which is randomly generated?
-
--- removed productID thinking this would fix my issue - it didn't
---INSERT INTO PRODUCT (productName, sellerName, productPrice) VALUES
---('doll','walmart', 12.99);  --how do i get the productID which is randomly generated?
+(345678912,'candy','family dollar',1.99),
+(234567891,'bunny','target',5.99),
+(123456789,'doll','walmart',12.99);

@@ -4,37 +4,38 @@ Phase 2
 
 HTTP & SQL project Two models / Tables: 
 
-//Product 
-// - Product Id (must be unique) 
-// - Product Name 
-// - Price 
-// - Seller Name 
+### Product 
+### - Product Id (must be unique) 
+### - Product Name 
+### - Price 
+### - Seller Name 
 
-//Seller 
-// - Seller Name (must be unique) 
+### Seller 
+### - Seller Name (must be unique) 
 
-// - Naturally, the two tables must be related via a foreign key. 
-// - It is OK for the project to reset the database on every run of the API. If you would like your project to persist 
-between runs, you can just comment out your .sql file's contents. 
-// - You may use the ConnectionSingleton, tables.sql, and pomfile provided in the h2-template repo to start up the 
-SQL integration. 
+### - Naturally, the two tables must be related via a foreign key. 
+### - It is OK for the project to reset the database on every run of the API. If you would like your project to persist 
+###     between runs, you can just comment out your .sql file's contents. 
+### - You may use the ConnectionSingleton, tables.sql, and pomfile provided in the h2-template repo to start up the 
+###     SQL integration. 
 
 On occassion, h2 files can get corrupted. If you suspect that this has happened, there is no harm in just deleting the 
 'h2' folder and allowing h2 to regenerate its files.
 
-//Create/Read functionality on Seller 
-// - GET /seller/ - All sellers 
-// - POST /seller/ - Seller names must be non-null & unique 
+### Create/Read functionality on Seller 
+### - GET /seller/ - All sellers 
+ - POST /seller/ - Seller names must be non-null - for some reason empty/null no longer works.
+### - - & unique 
 
 CRUD functionality on Product 
-// - GET /product/ - All products 
-// - GET /product/{id} - Get a single product 
-// - - We should get a 404 error when we try to access a non-existed product. 
-// - POST /product/ - Add a single product 
-// - - Product ids should be non-null and unique 
-// - - Product names should be non-null 
-// - - Price should be over 0 
-// - - Seller name should refer to an actually existing seller 
+### - GET /product/ - All products 
+### - GET /product/{id} - Get a single product 
+### - - We should get a 404 error when we try to access a non-existed product.
+### - POST /product/ - Add a single product 
+### - - Product ids should be non-null and unique - b/c App randomly generates these
+### - - Product names should be non-null 
+### - - Price should be over 0 
+### - - Seller name should refer to an actually existing seller 
  - PUT /product/{id} - Update a single product 
  - - Product names should be non-null 
  - - Price should be over 0 

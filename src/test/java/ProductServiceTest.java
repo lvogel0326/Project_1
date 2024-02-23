@@ -1,9 +1,11 @@
+import Utility.ConnectionSingleton;
 import org.example.Exception.ProductException;
 import org.example.Exception.SellerException;
 import org.example.Model.Product;
 import org.example.Model.Seller;
 import org.example.Service.ProductService;
 import org.example.Service.SellerService;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,6 +19,7 @@ public class ProductServiceTest {
     //before each test, reset the ProductService and SellerService to a newly instantiated objects
     ProductService productService;
     SellerService sellerService;
+
 
     Seller testSeller;
 
@@ -110,6 +113,11 @@ public class ProductServiceTest {
         productService.deleteProduct(product.productID);
 
         assertEquals(0, productList.size());
+    }
+
+    @After
+    public void dbReset(){
+        ConnectionSingleton.resetTestDatabase();
     }
 
 

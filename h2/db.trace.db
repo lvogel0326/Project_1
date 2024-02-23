@@ -216,3 +216,21 @@ org.h2.jdbc.JdbcSQLDataException: Invalid value "4" for parameter "parameterInde
 	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:933)
 	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1077)
 	at java.base/java.lang.Thread.run(Thread.java:829)
+2024-02-23 11:43:04 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "UPDATE PRODUCT SET productName = ?[*]sellerName = ?, productPrice = ?, WHERE productID = ?"; SQL statement:
+UPDATE PRODUCT SET productName = ?sellerName = ?, productPrice = ?, WHERE productID = ? [42000-214]
+2024-02-23 11:45:57 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "UPDATE PRODUCT SET productName = ?[*]sellerName = ?, productPrice = ?, WHERE productID = ?"; SQL statement:
+UPDATE PRODUCT SET productName = ?sellerName = ?, productPrice = ?, WHERE productID = ? [42000-214]
+2024-02-23 11:49:45 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "UPDATE PRODUCT SET productName = ?[*]sellerName = ?, productPrice = ?, WHERE productID = ?"; SQL statement:
+UPDATE PRODUCT SET productName = ?sellerName = ?, productPrice = ?, WHERE productID = ? [42000-214]
+2024-02-23 11:52:59 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "UPDATE PRODUCT SET productName = ?[*]sellerName = ?, productPrice = ?, WHERE productID = ?"; SQL statement:
+UPDATE PRODUCT SET productName = ?sellerName = ?, productPrice = ?, WHERE productID = ? [42000-214]
+2024-02-23 12:04:34 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "UPDATE PRODUCT SET productName = ?[*]sellerName = ?, productPrice = ?, WHERE productID = ?"; SQL statement:
+UPDATE PRODUCT SET productName = ?sellerName = ?, productPrice = ?, WHERE productID = ? [42000-214]
+2024-02-23 12:10:16 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "UPDATE PRODUCT SET productName = ?, sellerName = ?, productPrice = ?, [*]WHERE productID = ?"; expected "identifier"; SQL statement:
+UPDATE PRODUCT SET productName = ?, sellerName = ?, productPrice = ?, WHERE productID = ? [42001-214]

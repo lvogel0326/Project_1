@@ -25,7 +25,7 @@ public class ProductDAO {
                 long productID = rs.getLong("productID");
                 String productName = rs.getString("productName");
                 String sellerName = rs.getString("sellerName");
-                double productPrice = rs.getInt("productPrice");
+                double productPrice = rs.getDouble("productPrice");
                 Product p = new Product(productID, productName, sellerName, productPrice);
                 productResult.add(p);
             }
@@ -68,6 +68,35 @@ public class ProductDAO {
         }
         return null;
     }
+
+    public void deleteProduct(Product productToDelete) {
+        try{
+            PreparedStatement ps = conn.prepareStatement("DELETE from PRODUCT where productID = ?");
+            ps.setLong(1, productToDelete.productID);
+            ps.executeUpdate();
+            ps.close();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void updateProduct(Product updatedProduct) {
+        try{
+            PreparedStatement ps = conn.prepareStatement("UPDATE PRODUCT SET productName = ?, sellerName = ?, productPrice = ? WHERE productID = ?");
+
+            ps.setString(1,updatedProduct.getProductName());
+            ps.setString(2, updatedProduct.getSellerName());
+            ps.setDouble(3,updatedProduct.getProductPrice());
+            ps.setLong(4, updatedProduct.getProductID());
+            System.out.println(updatedProduct.getProductName() + " " + updatedProduct.getSellerName() + " " + updatedProduct.getProductPrice());
+            ps.executeUpdate();
+            ps.close();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+
 
 }
 

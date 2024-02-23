@@ -66,9 +66,9 @@ public class ProductService {
         // sellerService = new SellerService();
         //List<Seller> sellerList = sellerService.getSellerList();
         List<Seller> sellerList = sellerDAO.getSellerList();
-        System.out.println("seller list" + sellerList.size());
-        for (int i = 0; i < sellerList.size(); i++) {
-            if (p.sellerName.equals(sellerList.get(i).getName())) {
+        //System.out.println("seller list" + sellerList.size());
+        for (Seller seller : sellerList) {
+            if (p.sellerName.equals(seller.getName())) {
                 /*long id = (long) (Math.random() * Long.MAX_VALUE);
                 p.setProductId(id);
                 productList.add(p);
@@ -120,7 +120,7 @@ public class ProductService {
     public Product getProductById(Long id) {
         for (Product currentProduct : getProductList()) {
             if (currentProduct.getProductID() == id) {
-                System.out.println();
+               // System.out.println();
                 return currentProduct;
             }
         }
@@ -132,9 +132,12 @@ LK's code for deleteProduct
  */
     public Product deleteProduct(long productID) {
         Product productToDelete = getProductById(productID);
+        //System.out.println();
 
         if (productToDelete != null) {
-            getProductList().remove(productToDelete);
+           // getProductList().remove(productToDelete);
+            productDAO.deleteProduct(productToDelete);
+            System.out.println();
 
         }return productToDelete;
     }
@@ -156,7 +159,11 @@ from getProductByID is stored in productToUpdate.  Then we check that product na
         if (productToUpdate != null) {
 
             productToUpdate.setProductName(updatedProduct.getProductName());
+            productToUpdate.setSellerName(updatedProduct.getSellerName());
             productToUpdate.setProductPrice(updatedProduct.getProductPrice());
+            productToUpdate.setProductID(id);
+            System.out.println(productToUpdate.getProductName() + " " + productToUpdate.getSellerName() + " " + productToUpdate.getProductPrice());
+            productDAO.updateProduct(productToUpdate);
         }
         return productToUpdate;
 
