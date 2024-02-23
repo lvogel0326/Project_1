@@ -8,6 +8,7 @@ import org.example.Model.Product;
 import org.example.Model.Seller;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 //below we are defining the ProductService class.
@@ -17,7 +18,7 @@ public class ProductService {
      /*
     This is the DOA stuff -
     */
-     SellerDAO sellerDAO;
+    SellerDAO sellerDAO;
     ProductDAO productDAO;
     public ProductService(ProductDAO productDAO, SellerDAO sellerDAO){
         this.productDAO = productDAO;
@@ -42,10 +43,27 @@ public class ProductService {
     //This is the "getProductList() method that provides access to the list of products stored in the
     //productList variable.  It ENCAPSULATES the retrieval logic, allowing other parts of the code
     // to access the product list without directly accessing the underlying variable
+
+//    public List<Product> getProductList() {
+//      //  List<Product> productList = productDAO.getProductList();
+//        return productDAO.getProductList();
+//    }
+
+
     public List<Product> getProductList() {
         List<Product> productList = productDAO.getProductList();
-        return productList;
+        if (productList != null) {
+            return productList;
+        } else {
+            // Handle the case where productList is null
+            // You might throw an exception, log an error, or return an empty list
+            return Collections.emptyList(); // Example: returning an empty list
+        }
     }
+
+
+
+
 
 /*    //This method (sellerNameExists) takes a String parameter (sellerName) and returns a boolean value
     // indicating whether a seller with the specified name exists.

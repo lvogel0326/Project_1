@@ -1,6 +1,7 @@
 package org.example.DOA;
 
 import org.example.Model.Product;
+import org.example.Service.SellerService;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductDAO {
+public class ProductDAO extends SellerService {  // added this based on recommendation in test
     Connection conn;
     public ProductDAO(Connection conn) {
         this.conn = conn;
@@ -18,7 +19,7 @@ public class ProductDAO {
         //establishing list of cars at the start of the method
         List<Product> productResult = new ArrayList<>();
         try{
-            PreparedStatement ps = conn.prepareStatement("select * from Product");
+            PreparedStatement ps = conn.prepareStatement("select * from PRODUCT");
             ResultSet rs = ps.executeQuery();
             //while there are still values in resultSet, load them in the set of values
             while(rs.next()){
@@ -52,7 +53,7 @@ public class ProductDAO {
 
     public Product getProductByID(long productID){
         try{
-            PreparedStatement ps = conn.prepareStatement("select * from Product where productID = ?");
+            PreparedStatement ps = conn.prepareStatement("select * from PRODUCT where productID = ?");
             ps.setLong(1, productID);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){

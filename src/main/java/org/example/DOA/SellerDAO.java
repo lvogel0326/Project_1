@@ -20,7 +20,7 @@ public class SellerDAO {
         List<Seller> sellerResults = new ArrayList<>();
         try {
             // SQL logic - selecting everything from Seller
-            PreparedStatement ps = conn.prepareStatement("select * from Seller");
+            PreparedStatement ps = conn.prepareStatement("select * from SELLER");
             //results from above statement are returned in a resultSet
             ResultSet resultSet = ps.executeQuery();
             //looping thru resultSet to get all the records
@@ -47,7 +47,7 @@ public class SellerDAO {
         try {
             //This is the sql to add/POST a seller to the seller table with a value to be entered
             PreparedStatement ps = conn.prepareStatement("insert into " +
-                    "Seller (name) values (?)");
+                    "SELLER (name) values (?)");
             ps.setString(1, s.getName());
             ps.executeUpdate();
 
@@ -56,22 +56,22 @@ public class SellerDAO {
         }
 
     }
-    public String getSellerByName(String name) {
-        try {
-            PreparedStatement ps = conn.prepareStatement(
-                    "select * from seller where name = ?");
-            ps.setString(1, name);
-            ResultSet rs = ps.executeQuery();
-            if(rs.next()){
-                name = rs.getString("name");
-                //Seller s = new Seller(name);
-                return name;
-            }else{
-                return null;
-            }
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    public String getSellerByName(String name) {
+//        try {
+//            PreparedStatement ps = conn.prepareStatement(
+//                    "select * from SELLER where name = ?");
+//            ps.setString(1, name);
+//            ResultSet rs = ps.executeQuery();
+//            if(rs.next()){
+//                name = rs.getString("name");
+//                //Seller s = new Seller(name);
+//                return name;
+//            }else{
+//                return null;
+//            }
+//        }catch (SQLException e){
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 }
