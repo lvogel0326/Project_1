@@ -44,7 +44,7 @@ public class SellerService {
 
     public void addSeller(Seller s) throws SellerException {
         Main.log.info("Attempting to add a Seller:" + s);
-        // LK code up to "sellerList.add(s)
+
         List<Seller> existingSeller = getSellerList();
 
         for (Seller seller : existingSeller) {

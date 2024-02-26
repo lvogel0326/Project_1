@@ -89,7 +89,7 @@ public class ProductServiceTest {
 //insert into PRODUCT (productID, productName, sellerName, productPrice) values (?, ?, ?, ?) [23506-214]
 
     @Test
-    public void testSellerExistsException() throws SellerException {
+    public void testSellerExistsException() throws ProductException {
         String testProductName = "ball";
         String testSellerName = "abc";
         double  testProductPrice = 5.99;
@@ -104,9 +104,10 @@ public class ProductServiceTest {
         seller.setName(testSellerName2);
 
         sellerDAO.addSeller(seller);
+        productDAO.addProduct(product);?.
 
         try{
-            productDAO.addProduct(product);
+            productService.addProduct(product);
             Assert.fail("Seller name does not exist in Seller database");
         }catch (Exception e) {
 
